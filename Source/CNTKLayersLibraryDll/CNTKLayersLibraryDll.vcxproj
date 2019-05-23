@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_NoOpt|x64">
+      <Configuration>Release_NoOpt</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_CpuOnly|x64">
+      <Configuration>Debug_CpuOnly</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_CpuOnly|x64">
+      <Configuration>Release_CpuOnly</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\CNTKv2LibraryDll;$(SolutionDir)Source\CNTKv2LibraryDll\API;$(SolutionDir)Source\CNTKv2LibraryDll\API\Internals;$(SolutionDir)Source\CNTKv2LibraryDll\Generated\Windows;$(SolutionDir)Source\Readers\ReaderLib;$(SolutionDir)Source\ActionsLib;$(SolutionDir)Source\SequenceTrainingLib;$(SolutionDir)Source\SGDLib;$(SolutionDir)Source\ComputationNetworkLib;$(SolutionDir)Source\Math;$(SolutionDir)Source\Common\Include;$(SolutionDir)Source\CNTK\BrainScript;$(MSMPI_INC);$(NvmlInclude);$(SolutionDir)Source\PerformanceProfilerDll</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(MSMPI_LIB64);$(OutDir);$(NvmlLibPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{8FD56E9F-F6C7-44FE-B706-63072524AA6E}</ProjectGuid>
+    <RootNamespace>CNTKLayersLibraryDll</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(SolutionDir)\CNTK.Cpp.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug_CpuOnly|x64'">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release_CpuOnly|x64'">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release_NoOpt|x64'">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>Cntk.Layers$(OutputSuffix)-$(CntkComponentVersion)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_CpuOnly|x64'">
+    <TargetName>Cntk.Layers$(OutputSuffix)-$(CntkComponentVersion)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>Cntk.Layers$(OutputSuffix)-$(CntkComponentVersion)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_CpuOnly|x64'">
+    <TargetName>Cntk.Layers$(OutputSuffix)-$(CntkComponentVersion)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoOpt|x64'">
+    <TargetName>Cntk.Layers$(OutputSuffix)-$(CntkComponentVersion)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="$(ReleaseBuild)">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CNTKLAYERSLIBRARYDLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release_CpuOnly|x64'">CNTKLAYERSLIBRARYDLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release_NoOpt|x64'">CNTKLAYERSLIBRARYDLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Cntk.Core-$(CntkComponentVersion).lib;Cntk.Actions-$(CntkComponentVersion).lib; Cntk.SGD-$(CntkComponentVersion).lib; Cntk.ComputationNetwork-$(CntkComponentVersion).lib; Cntk.Math-$(CntkComponentVersion).lib; Cntk.Common-$(CntkComponentVersion).lib; kernel32.lib; user32.lib; shell32.lib; Cntk.SequenceTrainingLib-$(CntkComponentVersion).lib; Cntk.PerformanceProfiler-$(CntkComponentVersion).lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release_CpuOnly|x64'">Cntk.Core-$(CntkComponentVersion).lib;Cntk.Actions-$(CntkComponentVersion).lib; Cntk.SGD-$(CntkComponentVersion).lib; Cntk.ComputationNetwork-$(CntkComponentVersion).lib; Cntk.Math-$(CntkComponentVersion).lib; Cntk.Common-$(CntkComponentVersion).lib; kernel32.lib; user32.lib; shell32.lib; Cntk.SequenceTrainingLib-$(CntkComponentVersion).lib; Cntk.PerformanceProfiler-$(CntkComponentVersion).lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release_NoOpt|x64'">Cntk.Core-$(CntkComponentVersion).lib;Cntk.Actions-$(CntkComponentVersion).lib; Cntk.SGD-$(CntkComponentVersion).lib; Cntk.ComputationNetwork-$(CntkComponentVersion).lib; Cntk.Math-$(CntkComponentVersion).lib; Cntk.Common-$(CntkComponentVersion).lib; kernel32.lib; user32.lib; shell32.lib; Cntk.SequenceTrainingLib-$(CntkComponentVersion).lib; Cntk.PerformanceProfiler-$(CntkComponentVersion).lib; %(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="$(DebugBuild)">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CNTKLAYERSLIBRARYDLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug_CpuOnly|x64'">CNTKLAYERSLIBRARYDLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Cntk.Core-$(CntkComponentVersion).lib;Cntk.Actions-$(CntkComponentVersion).lib; Cntk.SGD-$(CntkComponentVersion).lib; Cntk.ComputationNetwork-$(CntkComponentVersion).lib; Cntk.Math-$(CntkComponentVersion).lib; Cntk.Common-$(CntkComponentVersion).lib; kernel32.lib; user32.lib; shell32.lib; Cntk.SequenceTrainingLib-$(CntkComponentVersion).lib; Cntk.PerformanceProfiler-$(CntkComponentVersion).lib; %(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug_CpuOnly|x64'">Cntk.Core-$(CntkComponentVersion).lib;Cntk.Actions-$(CntkComponentVersion).lib; Cntk.SGD-$(CntkComponentVersion).lib; Cntk.ComputationNetwork-$(CntkComponentVersion).lib; Cntk.Math-$(CntkComponentVersion).lib; Cntk.Common-$(CntkComponentVersion).lib; kernel32.lib; user32.lib; shell32.lib; Cntk.SequenceTrainingLib-$(CntkComponentVersion).lib; Cntk.PerformanceProfiler-$(CntkComponentVersion).lib; %(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CNTKLayers.h" />
+    <ClInclude Include="Convolution.h" />
+    <ClInclude Include="Dense.h" />
+    <ClInclude Include="For.h" />
+    <ClInclude Include="ILayer.h" />
+    <ClInclude Include="InsertBlock.h" />
+    <ClInclude Include="Sequential.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Convolution.cpp" />
+    <ClCompile Include="Dense.cpp" />
+    <ClCompile Include="For.cpp" />
+    <ClCompile Include="InsertBlock.cpp" />
+    <ClCompile Include="Sequential.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
